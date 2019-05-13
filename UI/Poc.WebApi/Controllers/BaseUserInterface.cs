@@ -10,7 +10,6 @@ using Poc.Infra.CrossCutting.Identity.Repository;
 using Poc.WebApi.Interfaces;
 using POC.Domain.Core;
 using POC.Domain.Core.Bus;
-using POC.Domain.Core.Extensions.PagededList;
 using POC.Domain.Core.Interfaces;
 using POC.Domain.Core.Logs;
 using POC.Domain.Core.Notifications;
@@ -193,7 +192,7 @@ namespace Poc.WebApi.Controllers
             return Response(result);
         }
 
-        public async Task<Result<object, IErrorMessage>> List(TypeUserEnum typeUser, int page = 0, int pageSize = 0, string search = "", string sort = "")
+        public async Task<Result<object, IErrorMessage>> List(TypeUserEnum typeUser)
         {
             IQueryable<ApplicationUser> listUsers = null;
             var result = new List<ApplicationUser>();
@@ -215,97 +214,6 @@ namespace Poc.WebApi.Controllers
                     break;
             }
             #endregion
-
-            #region Page
-            var listPaged = listUsers.GetPaged(page: page, pageSize: pageSize);
-            #endregion
-
-            #region Search
-
-            if (!string.IsNullOrWhiteSpace(search))
-            {
-                result = listPaged.Results.Where(x => x.UserName.ToUpper().Contains(search.ToUpper())).ToList();
-            }
-
-            #endregion
-
-            #region sort
-
-            if (string.IsNullOrWhiteSpace(sort))
-            {
-                return Response(result);
-            }
-
-            switch (sort.ToUpper())
-            {
-                case "USERNAME":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.UserName));
-                    }
-
-                    return Response(result.OrderBy(x => x.UserName));
-
-                case "EMAIL":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.Email));
-                    }
-
-                    return Response(result.OrderBy(x => x.Email));
-                case "PROFILEPICTURE":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.ProfilePicture));
-                    }
-
-                    return Response(result.OrderBy(x => x.ProfilePicture));
-
-                case "EMAILCONFIRMED":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.EmailConfirmed));
-                    }
-
-                    return Response(result.OrderBy(x => x.EmailConfirmed));
-
-
-                case "DATECREATED":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.DateCreated));
-                    }
-
-                    return Response(result.OrderBy(x => x.DateCreated));
-
-                case "DATEUPDATED":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.DateUpdated));
-                    }
-
-                    return Response(result.OrderBy(x => x.DateCreated));
-
-                case "FIRSTNAME":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.FirstName));
-                    }
-
-                    return Response(result.OrderBy(x => x.FirstName));
-
-
-                case "LASTNAME":
-                    if (sort.StartsWith("-"))
-                    {
-                        return Response(result.OrderByDescending(x => x.LastName));
-                    }
-
-                    return Response(result.OrderBy(x => x.LastName));
-            }
-
-            #endregion
-
 
             return Response(result);
         }

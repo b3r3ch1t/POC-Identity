@@ -37,7 +37,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/register")]
         public async Task<Result<object, IErrorMessage>> Register([FromBody] RegisterViewModel model)
         {
-            var result = await _baseUserInterface.Register(model, TypeUserEnum.User);
+            var result = await _baseUserInterface.Register(model, TypeUserEnum.User).ConfigureAwait(true);
 
             return result;
         }
@@ -46,7 +46,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/change-password")]
         public async Task<Result<object, IErrorMessage>> ChangePassword([FromBody] ChangePasswordViewModel model)
         {
-            var result = await _baseUserInterface.ChangePassword(model);
+            var result = await _baseUserInterface.ChangePassword(model).ConfigureAwait(true);
             return result;
         }
 
@@ -54,7 +54,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/set-password")]
         public async Task<Result<object, IErrorMessage>> SetPassword([FromBody] SetPasswordViewModel model)
         {
-            var result = await _baseUserInterface.SetPassword(model);
+            var result = await _baseUserInterface.SetPassword(model).ConfigureAwait(true);
             return result;
         }
 
@@ -62,7 +62,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/generate-recovery-code")]
         public async Task<Result<object, IErrorMessage>> GenerateRecoveryCodes(Guid userId)
         {
-            var result = await _baseUserInterface.GenerateRecoveryCodes(userId);
+            var result = await _baseUserInterface.GenerateRecoveryCodes(userId).ConfigureAwait(true);
             return result;
         }
 
@@ -72,7 +72,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/confirm-email/{UserId}/{Code}")]
         public async Task<Result<object, IErrorMessage>> ConfirmEmail(string userId, string code)
         {
-            var result = await _baseUserInterface.ConfirmEmail(userId: userId, code: code);
+            var result = await _baseUserInterface.ConfirmEmail(userId: userId, code: code).ConfigureAwait(true);
             return result;
         }
 
@@ -82,7 +82,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/forgot-password")]
         public async Task<Result<object, IErrorMessage>> ForgotPassword([FromBody] ForgotPasswordViewModel model)
         {
-            var result = await _baseUserInterface.ForgotPassword(model);
+            var result = await _baseUserInterface.ForgotPassword(model).ConfigureAwait(true);
             return result;
         }
 
@@ -91,7 +91,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/reset-password")]
         public async Task<Result<object, IErrorMessage>> ResetPassword([FromBody] ResetPasswordViewModel model)
         {
-            var result = await _baseUserInterface.ResetPassword(model);
+            var result = await _baseUserInterface.ResetPassword(model).ConfigureAwait(true);
             return result;
         }
 
@@ -99,7 +99,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/send-verification-email")]
         public async Task<Result<object, IErrorMessage>> SendVerificationEmail([FromBody] IndexViewModel model)
         {
-            var result = await _baseUserInterface.SendVerificationEmail(model);
+            var result = await _baseUserInterface.SendVerificationEmail(model).ConfigureAwait(true);
             return result;
         }
 
@@ -107,7 +107,7 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/delete/{userId}")]
         public async Task<Result<object, IErrorMessage>> Delete(Guid userId)
         {
-            var result = await _baseUserInterface.Delete(userId);
+            var result = await _baseUserInterface.Delete(userId).ConfigureAwait(true);
             return result;
         }
 
@@ -115,18 +115,16 @@ namespace Poc.WebApi.Controllers
         [Route("/api/v1/users/{userId}")]
         public async Task<Result<object, IErrorMessage>> GetById(Guid userId)
         {
-            var result = await _baseUserInterface.GetById(userId);
+            var result = await _baseUserInterface.GetById(userId).ConfigureAwait(true);
             return result;
         }
 
 
         [HttpGet]
-        [Route("/api/v1/users/{page}/{pageSize}/{search}/{sort}")]
         [Route("/api/v1/users/")]
-        public async Task<Result<object, IErrorMessage>> List(int page = 0, int pageSize = 0, string search = "", string sort = "")
+        public async Task<Result<object, IErrorMessage>> List()
         {
-            var result = await _baseUserInterface.List(typeUser: TypeUserEnum.User, page: page, pageSize: pageSize,
-                search: search, sort: sort);
+            var result = await _baseUserInterface.List(typeUser: TypeUserEnum.User).ConfigureAwait(true);
 
             return result;
         }

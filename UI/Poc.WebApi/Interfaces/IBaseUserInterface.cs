@@ -19,7 +19,7 @@ namespace Poc.WebApi.Interfaces
 
         Task<Result<object, IErrorMessage>> Delete(Guid userId);
 
-        Task<Result<object, IErrorMessage>> List(TypeUserEnum typeUser, int page = 0, int pageSize = 0, string search = "", string sort = "");
+        Task<Result<object, IErrorMessage>> List(TypeUserEnum typeUser);
 
         Task<Result<object, IErrorMessage>> ChangePassword(ChangePasswordViewModel model);
         Task<Result<object, IErrorMessage>> SetPassword(SetPasswordViewModel model);
