@@ -1,0 +1,57 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+    <UserSecretsId>f8be11e8-fe93-4407-9322-f8b590398b65</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20190316010648_Identity.cs" />
+    <Compile Remove="Migrations\20190316010648_Identity.Designer.cs" />
+    <Compile Remove="Migrations\20190322192810_RenameTablesIdentity.cs" />
+    <Compile Remove="Migrations\20190322192810_RenameTablesIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20190322193411_Identity_Rename_Table.cs" />
+    <Compile Remove="Migrations\20190322193411_Identity_Rename_Table.Designer.cs" />
+    <Compile Remove="Migrations\20190322193722_Identity_Rename_Table.cs" />
+    <Compile Remove="Migrations\20190322193722_Identity_Rename_Table.Designer.cs" />
+    <Compile Remove="Migrations\20190322194723_IdentityRenameTable.cs" />
+    <Compile Remove="Migrations\20190322194723_IdentityRenameTable.Designer.cs" />
+    <Compile Remove="Migrations\20190322213601_RenameTables.cs" />
+    <Compile Remove="Migrations\20190322213601_RenameTables.Designer.cs" />
+    <Compile Remove="Migrations\20190322213717_RenameTables.cs" />
+    <Compile Remove="Migrations\20190322213717_RenameTables.Designer.cs" />
+    <Compile Remove="Migrations\20190322214842_RenameTablesId.cs" />
+    <Compile Remove="Migrations\20190322214842_RenameTablesId.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+    <Folder Include="Repository\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.2.0" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.4.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.2.0" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql.Design" Version="1.1.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.3" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.2.0" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Domain\POC.Domain.Core\POC.Domain.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
+  </ItemGroup>
+ 
+</Project>
